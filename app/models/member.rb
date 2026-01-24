@@ -5,4 +5,18 @@ class Member < ApplicationRecord
   validates :user_name, presence: true, uniqueness: true
   validates :first_name, presence: true
   validates :surnames, presence: true
+
+
+  def full_name
+    "#{first_name} #{surnames}"
+  end
+
+  def status 
+
+    # if charges.where(charge_date: nil).any? 
+    #   return "Pendiente"
+    # end
+
+    'Al corriente'
+  end
 end
