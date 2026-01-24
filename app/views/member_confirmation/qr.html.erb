@@ -1,0 +1,7 @@
+<% if @user && !@user.churn_date.present?%>
+    <p>Socio confirmado</p>
+    <p>Nombre <%= "#{@user.nombre} #{@user.apellidos}"%> </p>
+    <p>DNI <%= @user.document_number%> </p>
+<%else%>
+    <p> Socio no encontrado</p>
+<%end%>

@@ -1,0 +1,123 @@
+<div id="root">
+    <div class="min-h-screen bg-gray-50">
+        <header class="bg-white shadow-sm border-b border-gray-200">
+            <div class="px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                      <a href="/">
+                        <button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button>
+                      </a>
+                        <div>
+                      
+                            <h1 class="text-xl font-bold text-gray-900">Gestión de Hermanos</h1>
+                            <p class="text-sm text-gray-600">Base de datos de hermanos</p>
+                        </div>
+                    </div><button class="abg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors whitespace-nowrap cursor-pointer"><i class="ri-add-line"></i><span>Nuevo Hermano</span></button></div>
+            </div>
+        </header>
+        <div class="p-6">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6 border border-gray-100">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label class="block text-sm font-medium text-gray-700 mb-2">Buscar</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none w-5 h-5">
+                              <i class="ri-search-line text-gray-400"></i>
+                            </div>
+                            <input placeholder="Buscar por nombre, apellidos, número o correo..." class="input block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm" type="text" value="">
+                            <input type="hidden" id="filter" name="filter" value="<%="#{@filter}"%>">
+                          </div>
+                    </div>
+                    <div><label class="block text-sm font-medium text-gray-700 mb-2">Estado de Pago</label>
+                        <div class="flex space-x-2"><button class="all filter-button flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap cursor-pointer bg-indigo-600 text-white">Todos</button><button class="paid filter-button flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap cursor-pointer bg-gray-100 text-gray-700 hover:bg-gray-200">Al Corriente</button><button class="unpaid filter-button flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap cursor-pointer bg-gray-100 text-gray-700 hover:bg-gray-200">Pendiente</button></div>
+                    </div>
+                </div>
+            </div>
+            <%= will_paginate @members %>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Nº Hermano</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Nombre Completo</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Teléfono</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Correo</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Estado</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                          <% @members.each do |member| %>
+                            <tr class="hover:bg-gray-50 transition-colors brother <%= member.status.downcase.gsub(' ', '_') %>">
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="text-sm font-medium text-gray-900"><%= member.number %></span></td>
+                                <td class="px-6 py-4">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900"><%= member.full_name %></div>
+                                        <div class="text-sm text-gray-500"><%="#{member.zip_code} #{member.city}"%></div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="text-sm text-gray-900"><%= member.phone1 %></span></td>
+                                <td class="px-6 py-4"><span class="text-sm text-gray-900"><%= "#{member.email}" %></span></td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <% if member.status == "Pendiente" %>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800"><i class="ri-error-warning-fill mr-1"></i><%= member.status %></span>
+                                  <% else %>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800"><i class="ri-checkbox-circle-fill mr-1"></i><%= member.status %></span>
+                                  <% end %>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap"><a href="/members/<%= member.id%>" data-turbolinks="false" remote="true" class="text-indigo-600 hover:text-indigo-900 font-medium text-sm whitespace-nowrap cursor-pointer">Ver Detalles</a>
+</td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div>
+              <a href="/members/new">
+                    <button class="all filter-button flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap cursor-pointer bg-indigo-600 text-white">Añadir hermano</button>
+              </a>            
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+  $('.input').keypress(function (e) {
+
+    if (e.which == 13) {
+      url = "/members/search?q=" + $('.input').val() + "&filter=" + $('#filter').val();
+      window.location.href = url;
+      return false;
+    }
+  });
+
+
+  $('.all').click(function() {
+    $('.filter-button').removeClass('bg-indigo-600 text-white').addClass('bg-gray-100 text-gray-700 hover:bg-gray-200');
+    $('.all').addClass('bg-indigo-600 text-white').removeClass('bg-gray-100 text-gray-700 hover:bg-gray-200');
+    $('#filter').val('all');
+  })
+
+  $('.paid').click(function() {
+    $('.filter-button').removeClass('bg-indigo-600 text-white').addClass('bg-gray-100 text-gray-700 hover:bg-gray-200');
+    $('.paid').addClass('bg-indigo-600 text-white').removeClass('bg-gray-100 text-gray-700 hover:bg-gray-200');
+    $('#filter').val('paid');
+  })
+
+  $('.unpaid').click(function() {
+    $('.filter-button').removeClass('bg-indigo-600 text-white').addClass('bg-gray-100 text-gray-700 hover:bg-gray-200');
+    $('.unpaid').addClass('bg-indigo-600 text-white').removeClass('bg-gray-100 text-gray-700 hover:bg-gray-200');
+    $('#filter').val('unpaid');
+  })
+
+  $(".open").on("click", function(){
+    $(".overlay, .modal").addClass("active");
+  });
+
+  $(".close, .overlay").on("click", function(){
+    $(".overlay, .modal").removeClass("active");
+  });
+</script>
