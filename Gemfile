@@ -29,6 +29,11 @@ gem "jbuilder"
 
 gem 'will_paginate', '~> 4.0'
 
+gem "tailwindcss-rails", "~> 3.3.1"
+
+gem "google-apis-calendar_v3"
+gem "googleauth"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

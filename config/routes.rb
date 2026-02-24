@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   resources :good_types
   resources :goods
 
+  resources :mesas, only: [:index, :new, :create]
+
 end

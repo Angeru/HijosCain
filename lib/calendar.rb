@@ -3,7 +3,7 @@ require "googleauth"
 
 service = Google::Apis::CalendarV3::CalendarService.new
 service.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
-  json_key_io: File.open("lib/service-account.json"),
+  json_key_io: File.open("service-account.json"),
   scope: Google::Apis::CalendarV3::AUTH_CALENDAR
 )
 

@@ -1,0 +1,109 @@
+<%
+  first_day    = @date.beginning_of_month
+  last_day     = @date.end_of_month
+  today        = Date.today
+  prev_month   = @date.prev_month
+  next_month   = @date.next_month
+  month_names  = %w[Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre]
+  day_names    = %w[Lun Mar Mié Jue Vie Sáb Dom]
+
+  # Offset: Monday = 0 … Sunday = 6
+  start_offset = (first_day.wday + 6) % 7
+  total_days   = last_day.day
+  total_cells  = ((start_offset + total_days).to_f / 7).ceil * 7
+%>
+
+<div id="root">
+  <div class="min-h-screen bg-gray-50">
+    <header class="bg-white shadow-sm border-b border-gray-200">
+      <div class="px-6 py-4">
+        <div class="flex items-center justify-between w-full">
+          <div class="flex items-center space-x-4">
+            <a href="/"><button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button></a>
+            <div>
+              <h1 class="text-xl font-bold text-gray-900">Gestión de Mesas</h1>
+              <p class="text-sm text-gray-600">Calendario de la asociación</p>
+            </div>
+          </div>
+          <a href="/mesas/new"><button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors whitespace-nowrap cursor-pointer"><i class="ri-add-line mr-1"></i><span>Nuevo Evento</span></button></a>
+        </div>
+      </div>
+    </header>
+
+    <div class="p-6">
+
+      <% if @error %>
+        <div class="mb-4 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-sm">
+          <i class="ri-error-warning-fill mr-2"></i>No se pudo conectar con Google Calendar.
+        </div>
+      <% end %>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+
+        <%# Navegación mes %>
+        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+          <a href="?month=<%= prev_month.month %>&year=<%= prev_month.year %>">
+            <button class="w-9 h-9 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer">
+              <i class="ri-arrow-left-s-line text-xl text-gray-600"></i>
+            </button>
+          </a>
+          <h2 class="text-base font-semibold text-gray-900">
+            <%= month_names[@date.month - 1] %> <%= @date.year %>
+          </h2>
+          <a href="?month=<%= next_month.month %>&year=<%= next_month.year %>">
+            <button class="w-9 h-9 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer">
+              <i class="ri-arrow-right-s-line text-xl text-gray-600"></i>
+            </button>
+          </a>
+        </div>
+
+        <%# Cabecera días %>
+        <div class="grid grid-cols-7 border-b border-gray-200 bg-gray-50">
+          <% day_names.each do |d| %>
+            <div class="py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider"><%= d %></div>
+          <% end %>
+        </div>
+
+        <%# Cuadrícula %>
+        <div class="grid grid-cols-7">
+          <% total_cells.times do |i| %>
+            <% day_num      = i - start_offset + 1 %>
+            <% valid        = day_num >= 1 && day_num <= total_days %>
+            <% current_date = valid ? (first_day + (day_num - 1)) : nil %>
+            <% is_today     = current_date == today %>
+            <% events       = valid ? (@events_by_date[current_date] || []) : [] %>
+            <% last_col     = (i % 7) == 6 %>
+            <% last_row     = i >= (total_cells - 7) %>
+
+            <div class="min-h-[110px] p-2 border-gray-100
+                        <%= last_col ? '' : 'border-r' %>
+                        <%= last_row ? '' : 'border-b' %>
+                        <%= valid ? 'bg-white' : 'bg-gray-50' %>">
+              <% if valid %>
+                <div class="flex justify-end mb-1">
+                  <span class="w-7 h-7 flex items-center justify-center rounded-full text-sm font-medium
+                               <%= is_today ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:bg-gray-100' %>">
+                    <%= day_num %>
+                  </span>
+                </div>
+
+                <% events.each do |event| %>
+                  <% all_day = event.start.date_time.nil? %>
+                  <div class="mb-1 px-1.5 py-0.5 rounded text-xs truncate
+                              <%= all_day ? 'bg-indigo-100 text-indigo-800' : 'bg-indigo-600 text-white' %>"
+                       title="<%= event.summary %>">
+                    <% unless all_day %>
+                      <span class="font-semibold"><%= event.start.date_time.strftime("%H:%M") %></span>
+                    <% end %>
+                    <%= event.summary.presence || "(Sin título)" %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
