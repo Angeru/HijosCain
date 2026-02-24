@@ -1,5 +1,8 @@
 class Member < ApplicationRecord
   has_secure_password
+  has_many :charges
+
+  scope :active, -> { where(churn_date: nil) }
 
   validates :email, presence: true, uniqueness: true
   validates :user_name, presence: true, uniqueness: true

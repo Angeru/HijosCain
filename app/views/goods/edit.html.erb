@@ -1,0 +1,19 @@
+<div id="root">
+  <div class="min-h-screen bg-gray-50">
+    <header class="bg-white shadow-sm border-b border-gray-200">
+      <div class="px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <a href="/goods/<%= @good.id %>"><button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button></a>
+            <div>
+              <h1 class="text-xl font-bold text-gray-900">Editar Artículo</h1>
+              <p class="text-sm text-gray-600"><%= @good.nombre %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <%= render "form", good: @good, button_label: "Guardar cambios" %>
+  </div>
+</div>

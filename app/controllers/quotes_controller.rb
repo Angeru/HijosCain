@@ -21,11 +21,11 @@ class QuotesController < ApplicationController
   
     def generate_charges
       Member.active.each do |member|
-        unless member.charges.where(quote_id: quote.id).any?
+        unless member.charges.where(quote_id: @quote.id).any?
           Charge.create(
-            member: brother,
-            quote:   quote,
-            notes:   quote.description
+            member: member,
+            quote:   @quote,
+            notes:   @quote.description
           )
         end
       end

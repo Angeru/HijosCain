@@ -8,6 +8,20 @@ Rails.application.routes.draw do
   get "/sessions/destroy", to: "sessions#destroy"
 
   resources :members
+  resources :quotes do
+    member do
+      post :generate_charges
+    end
+  end
+  resources :charges, only: [] do
+    member do
+      patch :pay
+      patch :unpay
+    end
+  end
   get "/qr/:id", to: "member_confimation#qr", as: :qr
+
+  resources :good_types
+  resources :goods
 
 end

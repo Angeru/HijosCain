@@ -1,0 +1,24 @@
+<%= form_with model: good_type do |f| %>
+  <div class="p-6">
+    <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+      <% if good_type.errors.any? %>
+        <div class="mb-4 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-sm">
+          <ul class="list-disc list-inside">
+            <% good_type.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div>
+        <%= f.label :name, "Nombre", class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.text_field :name, class: "block w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" %>
+      </div>
+    </div>
+
+    <div class="mt-6 flex space-x-3">
+      <%= f.submit button_label, class: "flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors cursor-pointer" %>
+    </div>
+  </div>
+<% end %>

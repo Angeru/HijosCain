@@ -1,0 +1,62 @@
+<div id="root">
+  <div class="min-h-screen bg-gray-50">
+    <header class="bg-white shadow-sm border-b border-gray-200">
+      <div class="px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <a href="/goods"><button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button></a>
+            <div>
+              <h1 class="text-xl font-bold text-gray-900"><%= @good.nombre %></h1>
+              <p class="text-sm text-gray-600"><%= @good.good_type.name %></p>
+            </div>
+          </div>
+          <a href="/goods/<%= @good.id %>/edit"><button class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors whitespace-nowrap cursor-pointer"><i class="ri-edit-line mr-1"></i><span>Editar</span></button></a>
+        </div>
+      </div>
+    </header>
+
+    <div class="p-6 space-y-6">
+
+      <% if notice.present? %>
+        <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg text-sm"><i class="ri-checkbox-circle-fill mr-2"></i><%= notice %></div>
+      <% end %>
+
+      <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+        <h2 class="text-base font-semibold text-gray-900 mb-4">Datos del artículo</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">EAN</p>
+            <p class="text-sm text-gray-900 font-mono"><%= @good.ean.presence || "—" %></p>
+          </div>
+          <div>
+            <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Nombre</p>
+            <p class="text-sm font-semibold text-gray-900"><%= @good.nombre %></p>
+          </div>
+          <div>
+            <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Tipo</p>
+            <p class="text-sm text-gray-900"><%= @good.good_type.name %></p>
+          </div>
+          <div>
+            <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Unidades</p>
+            <p class="text-sm text-gray-900"><%= @good.unidades.presence || "—" %></p>
+          </div>
+          <div>
+            <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Cedido</p>
+            <% if @good.cedido? %>
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Sí</span>
+            <% else %>
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">No</span>
+            <% end %>
+          </div>
+          <% if @good.notas.present? %>
+            <div class="md:col-span-3">
+              <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Notas</p>
+              <p class="text-sm text-gray-900"><%= @good.notas %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

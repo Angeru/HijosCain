@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_01_25_111708) do
+ActiveRecord::Schema[7.0].define(version: 2026_02_24_100001) do
   create_table "charges", force: :cascade do |t|
     t.date "charge_date"
     t.decimal "amount"
@@ -21,6 +21,24 @@ ActiveRecord::Schema[7.0].define(version: 2026_01_25_111708) do
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_charges_on_member_id"
     t.index ["quote_id"], name: "index_charges_on_quote_id"
+  end
+
+  create_table "good_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "goods", force: :cascade do |t|
+    t.string "ean"
+    t.string "nombre", null: false
+    t.integer "good_type_id", null: false
+    t.integer "unidades"
+    t.text "notas"
+    t.boolean "cedido", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["good_type_id"], name: "index_goods_on_good_type_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -55,4 +73,5 @@ ActiveRecord::Schema[7.0].define(version: 2026_01_25_111708) do
 
   add_foreign_key "charges", "members"
   add_foreign_key "charges", "quotes"
+  add_foreign_key "goods", "good_types"
 end
