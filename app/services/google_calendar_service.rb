@@ -3,7 +3,7 @@ require "googleauth"
 
 class GoogleCalendarService
   CALENDAR_ID = "hijosdecainlalinea@gmail.com"
-  KEY_PATH    = Rails.root.join("lib", "service-account.json")
+  KEY_PATH    = Rails.root.join("lib", "service_account.json")
   TIME_ZONE   = "Europe/Madrid"
 
   def self.events_for_month(date)
@@ -56,5 +56,5 @@ class GoogleCalendarService
     )
     service
   end
-  private_class_method :build_service
+ # private_class_method :build_service
 end

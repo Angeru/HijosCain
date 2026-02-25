@@ -1,4 +1,5 @@
 class ChargesController < ApplicationController
+  before_action :require_president_or_treasurer
   before_action :set_charge
 
   def pay

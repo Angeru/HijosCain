@@ -1,4 +1,5 @@
 class GoodsController < ApplicationController
+  before_action :require_role
   before_action :set_good, only: %i[show edit update destroy]
 
   def index

@@ -66,6 +66,10 @@
               <label class="block text-sm font-medium text-gray-700 mb-1">Poblacion</label>
               <p class="text-base text-gray-900"><%= f.text_field :city %></p>
             </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Cargo</label>
+              <%= f.select :role, [["Sin cargo", ""]] + Member::ROLES.map { |r| [r.capitalize, r] }, {}, class: "block w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+            </div>
           </div>
           <div class="mt-6 flex space-x-3">
             <button class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap cursor-pointer"><i class="ri-edit-line mr-2"></i>Crear</button>

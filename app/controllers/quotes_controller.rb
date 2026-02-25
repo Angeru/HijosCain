@@ -1,4 +1,5 @@
 class QuotesController < ApplicationController
+    before_action :require_president_or_treasurer
     before_action :set_quote, only: %i[ show edit update destroy generate_charges]
   
     # GET /quotes or /quotes.json

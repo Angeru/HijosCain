@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  before_action :require_role
   before_action :set_member, only: %i[ show edit update destroy churn dechurn ]
 
   def index

@@ -1,4 +1,5 @@
 class GoodTypesController < ApplicationController
+  before_action :require_role
   before_action :set_good_type, only: %i[edit update destroy]
 
   def index

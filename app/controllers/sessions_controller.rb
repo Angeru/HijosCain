@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      session[:last_active_at] = Time.now.to_i
       flash[:success] = "Login successful!"
       redirect_to root_path
     else
