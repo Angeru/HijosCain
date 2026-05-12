@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= Member.find(session[:user_id]) if session[:user_id]
-    @last_seen_at = Time.now
   end
   helper_method :current_user
 

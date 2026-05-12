@@ -29,8 +29,10 @@ class GoogleCalendarService
     desc_parts << description if description.present?
     desc_parts << "Mesas: #{mesas}"
 
+    summary = mesas.present? ? "#{title} (#{mesas} mesas)" : title
+
     event = Google::Apis::CalendarV3::Event.new(
-      summary: title,
+      summary: summary,
       description: desc_parts.join("\n"),
       start: Google::Apis::CalendarV3::EventDateTime.new(
         date_time: DateTime.parse("#{date}T#{start_time}:00").iso8601,
