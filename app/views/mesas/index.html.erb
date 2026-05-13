@@ -19,13 +19,13 @@
       <div class="px-6 py-4">
         <div class="flex items-center justify-between w-full">
           <div class="flex items-center space-x-4">
-            <a href="/"><button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button></a>
+            <a href="<%= root_path %>"><button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button></a>
             <div>
               <h1 class="text-xl font-bold text-gray-900">Gestión de Mesas</h1>
               <p class="text-sm text-gray-600">Calendario de la asociación</p>
             </div>
           </div>
-          <a href="/mesas/new"><button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors whitespace-nowrap cursor-pointer"><i class="ri-add-line mr-1"></i><span>Nuevo Evento</span></button></a>
+          <a href="<%= new_mesa_path %>"><button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors whitespace-nowrap cursor-pointer"><i class="ri-add-line mr-1"></i><span>Nuevo Evento</span></button></a>
         </div>
       </div>
     </header>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root "menu#main"
 
   resources :sessions, only: [:new, :create]
-  get "/sessions/destroy", to: "sessions#destroy"
+  get "/sessions/destroy", to: "sessions#destroy", as: :destroy_session
 
   resources :members
   resources :quotes do

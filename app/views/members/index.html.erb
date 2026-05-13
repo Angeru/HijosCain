@@ -4,7 +4,7 @@
             <div class="px-6 py-4">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-4">
-                      <a href="/">
+                      <a href="<%= root_path %>">
                         <button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button>
                       </a>
                         <div>
@@ -65,7 +65,7 @@
                                     <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800"><i class="ri-checkbox-circle-fill mr-1"></i><%= member.status %></span>
                                   <% end %>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap"><a href="/members/<%= member.id%>" data-turbolinks="false" remote="true" class="text-indigo-600 hover:text-indigo-900 font-medium text-sm whitespace-nowrap cursor-pointer">Ver Detalles</a>
+                                <td class="px-6 py-4 whitespace-nowrap"><a href="<%= member_path(member) %>" data-turbolinks="false" remote="true" class="text-indigo-600 hover:text-indigo-900 font-medium text-sm whitespace-nowrap cursor-pointer">Ver Detalles</a>
 </td>
                             </tr>
                           <% end %>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div>
-              <a href="/members/new">
+              <a href="<%= new_member_path %>">
                     <button class="all filter-button flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap cursor-pointer bg-indigo-600 text-white">Añadir miembro</button>
               </a>            
             </div>
@@ -88,7 +88,7 @@
   $('.input').keypress(function (e) {
 
     if (e.which == 13) {
-      url = "/members/search?q=" + $('.input').val() + "&filter=" + $('#filter').val();
+      url = "<%= members_path %>/search?q=" + $('.input').val() + "&filter=" + $('#filter').val();
       window.location.href = url;
       return false;
     }

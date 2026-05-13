@@ -9,7 +9,7 @@
                             <h1 class="text-xl font-bold text-gray-900">Gestión de Hijos de Caín</h1>
                             <p class="text-sm text-gray-600">Panel de Administración</p>
                         </div>
-                    </div><a href="/sessions/destroy"><button class="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors whitespace-nowrap cursor-pointer"><i class="ri-logout-box-line"></i><span>Cerrar Sesión</span></button></a></div>
+                    </div><a href="<%= destroy_session_path %>"><button class="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors whitespace-nowrap cursor-pointer"><i class="ri-logout-box-line"></i><span>Cerrar Sesión</span></button></a></div>
             </div>
         </header>
         <div class="p-6">
@@ -21,7 +21,7 @@
                         <div class="flex-1">
                             <h2 class="text-xl font-bold text-gray-900 mb-2">Gestión de Miembros</h2>
                             <p class="text-gray-600 mb-4">Administra la base de datos de miembros, consulta información personal, estado de pagos y más.</p>
-                            <a href="/members" class="flex items-center text-indigo-600 font-medium"><span>Acceder</span><i class="ri-arrow-right-line ml-2"></i></a>
+                            <a href="<%= members_path %>" class="flex items-center text-indigo-600 font-medium"><span>Acceder</span><i class="ri-arrow-right-line ml-2"></i></a>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                             <h2 class="text-xl font-bold text-gray-900 mb-2">Gestión de Artículos</h2>
                             <p class="text-gray-600 mb-4">Control de inventario.</p>
                             <div class="flex items-center text-purple-600 font-medium">
-                              <a href="/goods">
+                              <a href="<%= goods_path %>">
                                 <span>Acceder</span>
                                 <i class="ri-arrow-right-line ml-2"></i>
                               </a>
@@ -53,7 +53,7 @@
                             <h2 class="text-xl font-bold text-gray-900 mb-2">Gestión de cobros</h2>
                             <p class="text-gray-600 mb-4">Control de cobros.</p>
                             <div class="flex items-center text-purple-600 font-medium">
-                              <a href="/quotes">
+                              <a href="<%= quotes_path %>">
                                 <span>Acceder</span>
                                 <i class="ri-arrow-right-line ml-2"></i>
                               </a>
@@ -71,7 +71,7 @@
                             <h2 class="text-xl font-bold text-gray-900 mb-2">Gestión de mesas</h2>
                             <p class="text-gray-600 mb-4">Control de mesas y calendario.</p>
                             <div class="flex items-center text-purple-600 font-medium">
-                              <a href="/mesas">
+                              <a href="<%= mesas_path %>">
                                 <span>Acceder</span>
                                 <i class="ri-arrow-right-line ml-2"></i>
                               </a>
