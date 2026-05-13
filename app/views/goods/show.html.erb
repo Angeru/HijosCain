@@ -4,13 +4,13 @@
       <div class="px-6 py-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-4">
-            <a href="<%= goods_path %>"><button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button></a>
+            <a href="/goods"><button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button></a>
             <div>
               <h1 class="text-xl font-bold text-gray-900"><%= @good.nombre %></h1>
               <p class="text-sm text-gray-600"><%= @good.good_type.name %></p>
             </div>
           </div>
-          <a href="<%= edit_good_path(@good) %>"><button class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors whitespace-nowrap cursor-pointer"><i class="ri-edit-line mr-1"></i><span>Editar</span></button></a>
+          <a href="/goods/<%= @good.id %>/edit"><button class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors whitespace-nowrap cursor-pointer"><i class="ri-edit-line mr-1"></i><span>Editar</span></button></a>
         </div>
       </div>
     </header>

@@ -4,13 +4,13 @@
       <div class="px-6 py-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-4">
-            <a href="<%= root_path %>"><button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button></a>
+            <a href="/"><button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button></a>
             <div>
               <h1 class="text-xl font-bold text-gray-900">Gestión de Cuotas</h1>
               <p class="text-sm text-gray-600">Cuotas periódicas de la asociación</p>
             </div>
           </div>
-          <a href="<%= new_quote_path %>"><button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors whitespace-nowrap cursor-pointer"><i class="ri-add-line mr-1"></i><span>Nueva Cuota</span></button></a>
+          <a href="/quotes/new"><button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors whitespace-nowrap cursor-pointer"><i class="ri-add-line mr-1"></i><span>Nueva Cuota</span></button></a>
         </div>
       </div>
     </header>
@@ -36,7 +36,7 @@
                   <td class="px-6 py-4 whitespace-nowrap"><span class="text-sm text-gray-900"><%= number_to_currency(quote.amount, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></span></td>
                   <td class="px-6 py-4 whitespace-nowrap"><span class="text-sm text-gray-900"><%= quote.start_date&.strftime("%d/%m/%Y") %> – <%= quote.end_date&.strftime("%d/%m/%Y") %></span></td>
                   <td class="px-6 py-4 whitespace-nowrap"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800"><i class="ri-group-line mr-1"></i><%= quote.charges.count %></span></td>
-                  <td class="px-6 py-4 whitespace-nowrap"><a href="<%= quote_path(quote) %>" class="text-indigo-600 hover:text-indigo-900 font-medium text-sm whitespace-nowrap cursor-pointer">Ver Detalles</a></td>
+                  <td class="px-6 py-4 whitespace-nowrap"><a href="/quotes/<%= quote.id %>" class="text-indigo-600 hover:text-indigo-900 font-medium text-sm whitespace-nowrap cursor-pointer">Ver Detalles</a></td>
                 </tr>
               <% end %>
             </tbody>

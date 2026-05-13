@@ -4,15 +4,15 @@
       <div class="px-6 py-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-4">
-            <a href="<%= root_path %>"><button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button></a>
+            <a href="/"><button class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"><i class="ri-arrow-left-line text-xl text-gray-700"></i></button></a>
             <div>
               <h1 class="text-xl font-bold text-gray-900">Inventario de Artículos</h1>
               <p class="text-sm text-gray-600">Artículos de la asociación</p>
             </div>
           </div>
           <div class="flex items-center space-x-3">
-            <a href="<%= good_types_path %>"><button class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg flex items-center transition-colors whitespace-nowrap cursor-pointer"><i class="ri-price-tag-3-line mr-1"></i><span>Tipos</span></button></a>
-            <a href="<%= new_good_path %>"><button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors whitespace-nowrap cursor-pointer"><i class="ri-add-line mr-1"></i><span>Nuevo Artículo</span></button></a>
+            <a href="/good_types"><button class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg flex items-center transition-colors whitespace-nowrap cursor-pointer"><i class="ri-price-tag-3-line mr-1"></i><span>Tipos</span></button></a>
+            <a href="/goods/new"><button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors whitespace-nowrap cursor-pointer"><i class="ri-add-line mr-1"></i><span>Nuevo Artículo</span></button></a>
           </div>
         </div>
       </div>
@@ -52,8 +52,8 @@
                     <% end %>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap flex items-center space-x-3">
-                    <a href="<%= good_path(good) %>" class="text-indigo-600 hover:text-indigo-900 font-medium text-sm cursor-pointer">Ver</a>
-                    <a href="<%= edit_good_path(good) %>" class="text-indigo-600 hover:text-indigo-900 font-medium text-sm cursor-pointer">Editar</a>
+                    <a href="/goods/<%= good.id %>" class="text-indigo-600 hover:text-indigo-900 font-medium text-sm cursor-pointer">Ver</a>
+                    <a href="/goods/<%= good.id %>/edit" class="text-indigo-600 hover:text-indigo-900 font-medium text-sm cursor-pointer">Editar</a>
                     <%= button_to good_path(good), method: :delete,
                           data: { turbo_confirm: "¿Eliminar el artículo «#{good.nombre}»?" },
                           class: "text-red-600 hover:text-red-900 font-medium text-sm cursor-pointer bg-transparent border-0 p-0" do %>

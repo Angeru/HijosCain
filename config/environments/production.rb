@@ -24,9 +24,6 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
-  # La app se sirve bajo /backoffice (el reverse proxy solo reenvía /backoffice/*).
-  config.relative_url_root = "/backoffice"
-
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
